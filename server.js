@@ -2,7 +2,7 @@ const app = require('express')();
 const http = require('http').Server(app);
 // Body porser helps us to convert our request data in the required format. Here we have use json as the format.
 var bodyParser = require('body-parser');
-const DB_URL = "mongodb+srv://testuser:9XfaJ5mZhGTrKHRI@cluster0-cvdjl.mongodb.net/students-db?retryWrites=true&w=majority"
+const DB_URL = process.env.TEST_MONGO_URI;
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
     extended: false
