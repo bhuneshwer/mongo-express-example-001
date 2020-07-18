@@ -7,8 +7,10 @@ const DB_URL = "mongodb+srv://testuser:9XfaJ5mZhGTrKHRI@cluster0-cvdjl.mongodb.n
 app.use(bodyParser.urlencoded({
     extended: false
 }))
+app.use(require('express').static('client'))
 // parse application/json
 app.use(bodyParser.json())
+
 
 function getDbClient() {
     return new Promise((resolve, reject) => {
@@ -23,6 +25,10 @@ function getDbClient() {
         });
     });
 }
+
+app.get("/", function (req, res){
+    res.render("index.html")
+})
 
 // Inserting data into database
 
@@ -100,7 +106,7 @@ app.put("/updatestudent", function (req, res) {
 
 
 // Query Parameters example
-app.get("/", (req, res) => {
+app.get("/list", (req, res) => {
     console.log(req.query)
     // Trying to read data through  query param
     var rollNo = req.query.rollNo;
